@@ -36,6 +36,7 @@ ul {
 /* ----------------------------------------HOME---------------------------------------- */
 #home {
   height: 100vh;
+  min-height: 600px;
   background-image: url('../img/header-bg.jpg');
   background-repeat: none;
   background-attachment: scroll;

@@ -71,15 +71,19 @@ const funcionDelItemActivo = (home, navItems) => {
   }
 }
 
-
 const desplazamientoDeLasAnclas = () => {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault()
-      document.querySelector(this.getAttribute('href')).scrollIntoView({
-        block: "start",
-        behavior: 'smooth'
-      })
+  $(function () {
+    $('a[href^="#"]').click(function () {
+      if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '')
+        && location.hostname == this.hostname) {
+        var $target = $(this.hash)
+        $target = $target.length && $target || $('[name=' + this.hash.slice(1) + ']')
+        if ($target.length) {
+          var targetOffset = $target.offset().top
+          $('html,body').animate({ scrollTop: targetOffset }, 750)
+          return false
+        }
+      }
     })
   })
 }
